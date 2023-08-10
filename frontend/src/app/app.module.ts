@@ -7,6 +7,9 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +19,9 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

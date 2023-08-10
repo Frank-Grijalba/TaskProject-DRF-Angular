@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7ebt(9-*ne9+ir7huaz#lk^y)t4$4t!vl-da-bo##h8s_x&7vs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,6 +53,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     
 ]
+
+CORS_ORIGINS_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST= (
+	'http://localhost:4200',
+)
 
 ROOT_URLCONF = 'ApiTasks.urls'
 
