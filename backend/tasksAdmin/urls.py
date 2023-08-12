@@ -3,6 +3,6 @@ from .api import TaskViewSet
 
 router = routers.DefaultRouter()
 
-router.register('api/tasks',  TaskViewSet, 'task' )
+router.register('tasks',  TaskViewSet, 'tasks' )
 
 urlpatterns = router.urls

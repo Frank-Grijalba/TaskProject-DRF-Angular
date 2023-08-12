@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-7ebt(9-*ne9+ir7huaz#lk^y)t4$4t!vl-da-bo##h8s_x&7vs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:4200',
+    'http://localhost:8000',
+]
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,28 +42,47 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tasksAdmin',
-    'rest_framework',
     'corsheaders',
+    'rest_framework',
+    'tasksAdmin',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
     
 ]
 
-CORS_ORIGINS_ALLOW_ALL = True
+# CORS_ORIGINS_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST= (
-	'http://localhost:4200',
-)
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+    'http://localhost:8000',
+]
 
 ROOT_URLCONF = 'ApiTasks.urls'
 
@@ -132,3 +156,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True

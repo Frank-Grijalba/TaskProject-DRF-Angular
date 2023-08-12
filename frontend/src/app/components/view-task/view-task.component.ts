@@ -20,9 +20,11 @@ export class ViewTaskComponent {
   }
 
   deleteTask(id: number){
-    this.taskService.deleteTask(id).subscribe(data => {
-      console.log(data)
-      this.ngOnInit() // refrescar el listado de tareas despues de eliminar
-    })
+    if (confirm('¿Are you sure you want to delete this task?')){
+      this.taskService.deleteTask(id).subscribe(data => {
+        console.log(data)
+        this.ngOnInit() // refrescar el listado de tareas despues de eliminar
+      })
+    }
   }
 }

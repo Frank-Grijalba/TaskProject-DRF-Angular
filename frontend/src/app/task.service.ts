@@ -8,7 +8,7 @@ import Task from './task.model';
 })
 
 export class TaskService {
-  private baseUrl = 'http://127.0.0.1:8000/api'; 
+  private baseUrl = 'http://127.0.0.1:8000'; 
 
   constructor(private http: HttpClient) { }
 
@@ -17,15 +17,20 @@ export class TaskService {
   }
 
   getTask(id: number): Observable<Task> {
-    return this.http.get<Task>(`${this.baseUrl}/tasks/${id}`);
+    const url = `${this.baseUrl}/tasks/${id}/`
+    console.log("Get Task: " + url)
+    return this.http.get<Task>(url);
   }
 
-  createTask(Task: Task): Observable<Task> {
-    return this.http.post<Task>(`${this.baseUrl}/tasks`, Task);
+  createTask(task: Task): Observable<Task> {
+    console.log("Pagina create task " + `${this.baseUrl}/tasks/`)
+    return this.http.post<Task>(`${this.baseUrl}/tasks/`, task);
   }
 
-  updateTask(id: number, Task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.baseUrl}/tasks/${id}`, Task);
+  updateTask(task: Task): Observable<Task> {
+    const url = `${this.baseUrl}/tasks/${task.id}/`;
+    console.log("Pagina Update " + url );
+    return this.http.put<Task>(url, task);
   }
 
   deleteTask(id: number): Observable<void> {
