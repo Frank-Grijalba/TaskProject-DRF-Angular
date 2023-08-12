@@ -9,17 +9,27 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" ><h1>Welcome</h1></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
-                    <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
-                </div>
+          <div class="d-flex justify-content-end align-items-center" >
+            <a title="zeti" href="https://www.zeti.co/inicio/" target="_blank">
+                <img src="./assets/images/zeti-logo.png" alt="Logo" width="70" height="70" >
+            </a>
+            <h3 style="color: darkblue; margin-right: 10px;">Welcome</h3>
+            
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div>
+              <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
             </div>
+            <div>                    
+              <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
+            </div>
+            
+          </div>
         </div>
+        
     </nav>
     <div class="container my-5">
         <div class="mx-auto w-75">
@@ -36,16 +46,16 @@
                 <div class="mb-3">
                     <label class="form-label">Status of the Task</label>
                     <div class="form-check">
-                        <input class="form-check-input" formControlName="task_status" type="radio" id="to_do" value="To Do">
-                        <label class="form-check-label" for="to_do">To Do</label>
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="to_do" value="TO DO">
+                        <label class="form-check-label" for="to_do">TO DO</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" formControlName="task_status" type="radio" id="in_progress" value="In Progress">
-                        <label class="form-check-label" for="in_progress">In Progress</label>
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="in_progress" value="IN PROGRESS">
+                        <label class="form-check-label" for="in_progress">IN PROGRESS</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" formControlName="task_status" type="radio" id="done" value="Done">
-                        <label class="form-check-label" for="done">Done</label>
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="done" value="DONE">
+                        <label class="form-check-label" for="done">DONE</label>
                     </div>
                 </div>
                 <div class="mb-3">

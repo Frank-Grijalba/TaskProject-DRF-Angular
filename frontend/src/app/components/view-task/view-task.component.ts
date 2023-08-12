@@ -44,6 +44,6 @@ export class ViewTaskComponent{
 
   onSearchStatus(search: string){
     this.page = 0;
-    this.search = (search);
+    this.search = (search.toUpperCase());
   }
 }

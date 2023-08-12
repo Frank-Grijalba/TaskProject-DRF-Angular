@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Task Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class= "navbar-brand" ><h1>Welcome</h1></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div>
-                    <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
-                </div>
-                <div>                    
-                    <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
-                </div>
+          <div class="d-flex justify-content-end align-items-center" >
+            <a title="zeti" href="https://www.zeti.co/inicio/" target="_blank">
+                <img src="./assets/images/zeti-logo.png" alt="Logo" width="70" height="70" >
+            </a>
+            <h3 style="color: darkblue; margin-right: 10px;">Welcome</h3>
+            
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div>
+              <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
             </div>
+            <div>                    
+              <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
+            </div>
+            
+          </div>
         </div>
+        
     </nav>
     <div class="container">
         <div class="row">
@@ -39,6 +48,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">Created at</th>
                             <th scope="col">Status</th>
+                            <th scope="col"></th>
                             <th scope="col">Update at</th>
                         </tr>
                     </thead>
@@ -49,8 +59,12 @@
                             <td>{{ task.description }}</td>
                             <td>{{ task.created | date:"yyyy-MM-dd" }} </td>
                             <td>{{ task.status_task }}</td>
+                            <td>
+                                <i *ngIf="task.status_task === 'DONE'" class="fa-solid fa-square-check" style="color: #18b938;"></i>
+                                <i *ngIf="task.status_task === 'IN PROGRESS'" class="fas fa-clock"></i>
+                                <i *ngIf="task.status_task === 'TO DO'" class="fa-regular fa-clock" style="color: #861d1d;" ></i>
+                              </td>
                             <td>{{ task.update_date_task }}</td>
-                            
                             <td>
                                 <button class="btn btn-primary" [routerLink]="'/update/' + task.id">Edit</button>
                             </td>
@@ -63,18 +77,19 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-2">
-                      <button class="btn btn-dark btn-block" (click)="previousPage()">
-                        Previous Page
-                      </button>
+                    <div class="col">
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-dark btn-block" (click)="previousPage()">
+                                Previous Page
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-dark btn-block" (click)="nextPage()" 
+                            [disabled] ="(tasks | filter:page:search).length === 0">
+                                Next Page
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-2">
-                      <button class="btn btn-dark btn-block" (click)="nextPage()" 
-                      [disabled] ="(tasks | filter:page:search).length === 0">
-                        Next Page
-                      </button>
-                    </div>
-                    <div class="col-7">
+                    <div class="col">
                       <input type="text" class="form-control mb-2" placeholder="Filter by status" #txtSearch (keyup)="onSearchStatus( txtSearch.value )">
                     </div>
                 </div>
@@ -83,8 +98,5 @@
             
         </div>
     </div> 
-    
-                        
-       
 </body>
 </html>

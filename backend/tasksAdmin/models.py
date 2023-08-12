@@ -6,10 +6,10 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now=True)
     TASK_STATUS = (
-        ("To Do", "To Do"),
-        ("In Progress", "In Progress"),
-        ("Done", "Done")
+        ("TO DO", "TO DO"),
+        ("IN PROGRESS", "IN PROGRESS"),
+        ("DONE", "DONE")
     )
-    status_task = models.CharField(max_length=20, choices=TASK_STATUS, blank=True, default= "To Do")
+    status_task = models.CharField(max_length=20, choices=TASK_STATUS, blank=True, default= "DONE")
     update_date_task = models.DateField(null=True, blank=True)
 
