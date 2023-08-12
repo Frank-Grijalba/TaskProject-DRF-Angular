@@ -9,74 +9,55 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class= "navbar-brand" href="">Welcome</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#"><h1>Welcome</h1></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div>
-                    <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-                </div>
-                <div>                    
-                    <a class="nav-link" routerLink="/add">New Task</a>
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
+                    <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="mx-auto w-25" style="max-width: 100%;">
+    <div class="container my-5">
+        <div class="mx-auto w-75">
             <h2 class="text-center mb-3">Update Task</h2>
-            <form [formGroup]="form" (ngSubmit)="submit()"> <!--update-task.component.ts-->
-                <!--title-->
-                <div class="row">
-                    <div class="col-md-12 form-group mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" id="title" formControlName="title" class="form-control" [value]="task?.title">
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="title" id="title" formControlName="title" class="form-control" [value]="task?.title">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" name="description" id="description" rows="6" formControlName="description" class="form-control" [value]="task?.description"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status of the Task</label>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="to_do" [value]="'To Do'" [checked]="task?.status_task === 'To Do'">
+                        <label class="form-check-label" for="to_do">To Do</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="in_progress" [value]="'In Progress'" [checked]="task?.status_task === 'In Progress'">
+                        <label class="form-check-label" for="in_progress">In Progress</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="task_status" type="radio" id="done" [value]="'Done'" [checked]="task?.status_task === 'Done'">
+                        <label class="form-check-label" for="done">Done</label>
                     </div>
                 </div>
-                <!--description-->
-                <div class="row">
-                    <div class="col-md-12 form-group mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" name="description" id="description" formControlName="description" class="form-control" [value]="task?.description">
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Status Update Date</label>
+                    <input type="date" class="form-control" formControlName="task_update_date" [value]="task?.update_date_task">
                 </div>
-                <!--Status-->
-                <label for="task_status" class="form-label">Status of the Task</label>
-                <!-- To Do -->
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="task_status" type="radio" name="task_status" id="To Do" [value]="'To Do'" [checked]="task?.status_task === 'To Do'">
-                    <label for="To Do" class="form-check-label">To Do</label>
+                <div class="mb-3">
+                    <input type="submit" value="Submit" class="btn btn-primary w-100" [disabled]="!form.valid">
                 </div>
-                
-                <!-- In Progress -->
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="task_status" type="radio" name="task_status" id="in_progress" [value]="'In Progress'" [checked]="task?.status_task === 'In Progress'">
-                    <label for="In Progress" class="form-check-label">In Progress</label>
-                </div>
-                
-                <!-- Done -->
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="task_status" type="radio" name="task_status" id="done" [value]="'done'" [checked]="task?.status_task === 'Done'">
-                    <label for="done" class="form-check-label">Done</label>
-                </div>
-
-                <div >
-                    <label for="date" class="form-label">Status Update Date </label>
-                </div>
-                <input type="date" formControlName="task_update_date">
-                
-                <!--Button-->
-                <div class="row">
-                    <div class="col-md-12 form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary w-100" [disabled]="!form.valid">
-                    </div>
-                </div>
-            </form> 
+            </form>
         </div>
-    </div>                      
-       
+    </div>
+    
 </body>
 </html>
-
-

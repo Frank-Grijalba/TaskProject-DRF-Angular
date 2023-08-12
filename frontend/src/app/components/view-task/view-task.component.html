@@ -9,16 +9,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class= "navbar-brand" href="">Welcome</a>
+            <a class= "navbar-brand" href=""><h1>Welcome</h1></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div>
-                    <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/"><h3>Home</h3></a>
                 </div>
                 <div>                    
-                    <a class="nav-link" routerLink="/add">New Task</a>
+                    <a class="nav-link" routerLink="/add"><h3>New Task</h3></a>
                 </div>
             </div>
         </div>
@@ -26,8 +26,21 @@
     <div class="container">
         <div class="row">
             <div class ="col-md-12">
-                <h1 class="text-center">View Users</h1>
-                <button class="btn btn-primary" routerLink="/add">New Task</button>
+                <h1 class="text-center">My Tasks</h1>
+                                
+                <!-- <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                        <li><a class="dropdown-item" (click)="filterProperty = 'all'">Show All</a></li>
+                        <li><a class="dropdown-item" (click)="filterProperty = 'todo'">To Do</a></li>
+                        <li><a class="dropdown-item" (click)="filterProperty = 'inprogress'">In Progress</a></li>
+                        <li><a class="dropdown-item" (click)="filterProperty = 'done'">Done</a></li>
+                    </ul>
+                </div> -->
+                
+              
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -47,17 +60,27 @@
                             <td>{{ task.created | date:"yyyy-MM-dd" }} </td>
                             <td>{{ task.status_task }}</td>
                             <td>{{ task.update_date_task }}</td>
-
+                            
                             <td>
                                 <button class="btn btn-primary" [routerLink]="'/update/' + task.id">Edit</button>
+                            </td>
+                            <td>
                                 <button class="btn btn-danger mx-2" (click)="deleteTask(task.id)">Delete</button>
                             </td>
+                            
                         </tr>
+                        
                     </tbody>
                 </table>
+                <div>
+                    <button class="btn btn-primary" routerLink="/add">New Task</button>
+               </div>  
             </div>
+            
         </div>
-    </div>                      
+    </div> 
+    
+                        
        
 </body>
 </html>

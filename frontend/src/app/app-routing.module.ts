@@ -8,6 +8,7 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full' },
   {path: 'tasks', component: ViewTaskComponent },
+  // {path: 'tasks/:id', component: ViewTaskComponent },
   {path: 'add', component: AddTaskComponent },
   {path: 'update/:id', component: UpdateTaskComponent },
 ];

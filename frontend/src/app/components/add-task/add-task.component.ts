@@ -18,7 +18,8 @@ export class AddTaskComponent {
   form = new FormGroup ({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    task_status: new FormControl('', Validators.required)
+    task_status: new FormControl('', Validators.required),
+    update_date_task: new FormControl('', Validators.required),
 
   })
 
