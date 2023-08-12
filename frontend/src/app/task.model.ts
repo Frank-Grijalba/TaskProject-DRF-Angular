@@ -3,6 +3,6 @@ export default interface Task{
     title: string,
     description: string,
     created?: Date,
-    task_status:string,
-    task_update_date?:Date
+    status_task:string,
+    update_date_task?:Date
 }

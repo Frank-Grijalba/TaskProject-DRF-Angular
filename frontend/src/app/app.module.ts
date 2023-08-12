@@ -9,13 +9,15 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './components/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
     ViewTaskComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class= "navbar-brand" href=""><h1>Welcome</h1></a>
+            <a class= "navbar-brand" ><h1>Welcome</h1></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,20 +27,10 @@
         <div class="row">
             <div class ="col-md-12">
                 <h1 class="text-center">My Tasks</h1>
-                                
-                <!-- <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" (click)="filterProperty = 'all'">Show All</a></li>
-                        <li><a class="dropdown-item" (click)="filterProperty = 'todo'">To Do</a></li>
-                        <li><a class="dropdown-item" (click)="filterProperty = 'inprogress'">In Progress</a></li>
-                        <li><a class="dropdown-item" (click)="filterProperty = 'done'">Done</a></li>
-                    </ul>
-                </div> -->
-                
-              
+                <div>
+                    <button class="btn btn-primary" routerLink="/add">New Task</button>
+                </div>  
+                <!--TABLE-->
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -53,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let task of tasks">
+                        <tr *ngFor="let task of tasks | filter:page:search">
                             <th scope="row"> {{ task.id }}</th>
                             <td>{{ task.title }}</td>
                             <td>{{ task.description }}</td>
@@ -72,9 +62,23 @@
                         
                     </tbody>
                 </table>
-                <div>
-                    <button class="btn btn-primary" routerLink="/add">New Task</button>
-               </div>  
+                <div class="row">
+                    <div class="col-2">
+                      <button class="btn btn-dark btn-block" (click)="previousPage()">
+                        Previous Page
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-dark btn-block" (click)="nextPage()" 
+                      [disabled] ="(tasks | filter:page:search).length === 0">
+                        Next Page
+                      </button>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control mb-2" placeholder="Filter by status" #txtSearch (keyup)="onSearchStatus( txtSearch.value )">
+                    </div>
+                </div>
+                
             </div>
             
         </div>
