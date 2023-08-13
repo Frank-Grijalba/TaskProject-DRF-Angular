@@ -1,0 +1,5 @@
+Django==4.0.4
+python-dateutil==2.7.3
+virtualenv==20.0.17
+django-cors-headers==4.2.0
+djangorestframework==3.14.0
