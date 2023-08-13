@@ -1,15 +1,22 @@
-FROM node:14-alpine as build-step
+# Stage 1
 
-RUN mkdir -p /app
+FROM node:18.10 as node
 
 WORKDIR /app
 
-COPY package.json /app
+COPY . .
 
 RUN npm install
 
-COPY . /app
+RUN npm run build --prod
+
+# stage 2
+
+FROM nginx:alpine
+
+COPY --from=node /app/dist/frontend /usr/share/nginx/html 
 
 # EXPOSE 4200
-
-RUN NODE_ENV=development npm i 
+# RUN NODE_ENV=development npm i 
+# RUN npm install
+# RUN npm run build
