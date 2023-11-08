@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Task from 'src/app/task.model';
 import { TaskService } from 'src/app/task.service'; // Importacion del servicio
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-view-task',
@@ -12,13 +13,13 @@ export class ViewTaskComponent{
   page: number = 0;
   search: string = '';
 
-  
+
 
   constructor(private taskService: TaskService){
   }
 
   ngOnInit():void {
-    this.taskService.getAllTasks().subscribe(data=> { 
+    this.taskService.getAllTasks().subscribe(data=> {
       this.tasks = Array.from(data);
       console.log(data)
     })
@@ -45,5 +46,20 @@ export class ViewTaskComponent{
   onSearchStatus(search: string){
     this.page = 0;
     this.search = (search.toUpperCase());
+  }
+
+  fileName = 'ExcelSheet.xlsx';
+
+  exportexcel() {
+    /**passing table id**/
+    let data = document.getElementById('table-data');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+    /**Generate workbook and add the worksheet**/
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /*save to file*/
+    XLSX.writeFile(wb, this.fileName);
   }
 }
